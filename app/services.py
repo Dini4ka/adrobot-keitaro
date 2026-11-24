@@ -133,7 +133,7 @@ def create_campaign(db: Session, client: KeitaroClient, settings: Settings,
         "group": refs["group"],
         "source": refs["source"],
         "streams": [geo_flow, offers_flow],
-        "admin_url": f"{settings.kt_admin_url}#!/campaign.editor/{campaign_id}",
+        "admin_url": f"{settings.kt_admin_url}#!/campaign/{campaign_id}/main",
     }
 
 
@@ -176,7 +176,7 @@ def campaign_view(db: Session, client: KeitaroClient, settings: Settings,
                                or stream.get("schema") == "landings",
         })
     campaign["streams"] = enriched
-    campaign["admin_url"] = f"{settings.kt_admin_url}#!/campaign.editor/{campaign_id}"
+    campaign["admin_url"] = f"{settings.kt_admin_url}#!/campaign/{campaign_id}/main"
     return campaign
 
 

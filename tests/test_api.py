@@ -136,7 +136,7 @@ def test_creator_builds_campaign_and_two_streams(client: TestClient, fake_kt: Fa
     assert body["domain"]["id"] == 1813
     assert body["group"]["id"] == 10332
     assert body["source"]["id"] == 836
-    assert body["admin_url"].endswith("#!/campaign.editor/%s" % body["id"])
+    assert body["admin_url"].endswith("#!/campaign/%s/main" % body["id"])
 
     campaign = fake_kt.campaigns_store[body["id"]]
     assert campaign["type"] == "position"
