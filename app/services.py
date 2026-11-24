@@ -18,10 +18,6 @@ from app.weights import normalize_shares
 log = logging.getLogger(__name__)
 
 
-def build_client() -> KeitaroClient:
-    return KeitaroClient(Settings())
-
-
 # ---------------------------------------------------------------------------
 # Создаватор кампаний
 # ---------------------------------------------------------------------------
