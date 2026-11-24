@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adrobot · обёртка над Keitaro</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Adrobot <span>обёртка над Keitaro</span></div>
+    <nav class="tabs">
+      <button id="tab-create" class="tab active">Создать кампанию</button>
+      <button id="tab-edit" class="tab">Редактор офферов</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="error-box" class="error hidden"></div>
+
+    <!-- ============ Создаватор ============ -->
+    <section id="view-create">
+      <div class="card">
+        <h1>Новая кампания</h1>
+        <p class="hint">Создаёт кампанию с двумя потоками: первый ловит указанную страну и редиректит
+          на Google, второй отдаёт трафик выбранному офферу. Домен, группа и источник подставляются
+          из справочников Keitaro. Название получит префикс <code>test_karelov_</code>.</p>
+
+        <form id="create-form">
+          <label>Название кампании
+            <input id="f-name" type="text" placeholder="campaign1" required>
+          </label>
+          <div class="row">
+            <label class="geo">Гео (код страны)
+              <input id="f-geo" type="text" placeholder="RU" maxlength="2" required>
+            </label>
+            <label class="offer grow">Оффер
+              <div class="autocomplete">
+                <input id="f-offer" type="text" placeholder="поиск по имени или id" autocomplete="off" required>
+                <div id="offer-suggest" class="suggest hidden"></div>
+              </div>
+            </label>
+          </div>
+          <div class="actions">
+            <button type="submit" class="btn primary" id="btn-create">Создать в Keitaro</button>
+            <button type="button" class="btn ghost" id="btn-refresh-catalog">Обновить каталог офферов</button>
+          </div>
+        </form>
+
+        <div id="create-result" class="hidden">
+          <h2>Готово</h2>
+          <table class="grid" id="create-result-table"></table>
+          <a id="create-admin-link" class="btn ghost" target="_blank" rel="noopener">Открыть в Keitaro</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Редактор ============ -->
+    <section id="view-edit" class="hidden">
+      <div class="card">
+        <div class="row baseline">
+          <h1>Редактор кампании</h1>
+          <button type="button" class="btn ghost" id="btn-reload-campaigns">Обновить список</button>
+        </div>
+        <label>Кампания
+          <select id="sel-campaign" required></select>
+        </label>
+
+        <div id="editor-body"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
